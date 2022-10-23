@@ -6,11 +6,11 @@
 #include <unistd.h>
 #include <limits.h>
 
-/*typedef struct	s_list
+typedef struct	s_list
 {
-	void		*content;
+	void	*content;
 	struct s_list	*next;
-}			t_list;*/
+}	t_list;
 
 //LIBC FUNTIONS (PART 1)
 int	ft_isalpha(int c);
@@ -51,4 +51,13 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 //LINKED LISTS (BONUS PART)
+//ft_lstnew();
+//ft_lstadd_front();
+//ft_lstsize();
+//ft_lstlast();
+//ft_lstadd_back();
+//ft_lstdelone();
+//ft_lstclear();
+//ft_lstiter();
+//ft_lstmap();
 #endif
