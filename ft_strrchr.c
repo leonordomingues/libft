@@ -3,7 +3,7 @@
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
-	i = ft_strlen(s);
+	i = ft_strlen((char *)s);
 
 	while (i >= 0)
 	{

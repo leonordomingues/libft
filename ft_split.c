@@ -62,17 +62,17 @@ char	**ft_split(const char *s, char c)
 	len = strcount((char *)s, c);
 	a = 0;
 	i = 0;
-	array = (char **)malloc(size(char *) * len + 1);
+	array = (char **)malloc(sizeof(char *) * len + 1);
 	if (!array)
 		return (NULL);
 	while (a < len)
 	{
-		stralloc(s, c, &i);
-		array[a] = ft_strlcpy(array[a], s, wordlen(s, c));
-		if (array[a] = NULL)
+		array[a] = stralloc((char *)s, c, &i);
+		ft_strlcpy(array[a], s, ft_strlen(array[a]));
+		if (array[a] == NULL)
 			freestr(array[a]);
 		a++;
 	}
-	array[a] = '\0';
+	array[a] = NULL;
 	return (array);
 } 
