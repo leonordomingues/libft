@@ -1,5 +1,6 @@
 #include "libft.h"
-static int	wordcount(char *s, char c)
+
+static int	strcount(char *s, char c)
 {
 	int	i;
 	int	a;
@@ -14,15 +15,43 @@ static int	wordcount(char *s, char c)
 	}
 	return (a);
 }
-static int	wordlen(char *s, char c)
+
+static char	*stralloc(char *s, char c, int *flag)
+{
+	char	*str;
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c)
+		{
+			while (s[i] != c)
+				i++;
+			str = (char *)malloc(sizeof(char *) * i + 1);
+			break;
+		}
+		i++;
+		flag += i;
+	}
+	if (!str)
+		return (NULL);
+	return (str);
+}
+
+void	freestr(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != c || s[i] != '\0')
+	while (str[i] != '\0')
+	{
+		free(str);
 		i++;
-	return (i);
+	}
+	free(str);
 }
+
 char	**ft_split(const char *s, char c)
 {
 	char	**array;
@@ -30,11 +59,20 @@ char	**ft_split(const char *s, char c)
 	int	a;
 	int	i;
 
-	len = wordcount((char *)s, c);
+	len = strcount((char *)s, c);
 	a = 0;
 	i = 0;
 	array = (char **)malloc(size(char *) * len + 1);
+	if (!array)
+		return (NULL);
 	while (a < len)
-		array[a++] = ft_strlcpy(array[a], s, wordlen(s, c));
+	{
+		stralloc(s, c, &i);
+		array[a] = ft_strlcpy(array[a], s, wordlen(s, c));
+		if (array[a] = NULL)
+			freestr(array[a]);
+		a++;
+	}
 	array[a] = '\0';
+	return (array);
 } 
