@@ -2,12 +2,12 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {	
-	int	i;
+	unsigned int	i;
        
 	i = ft_strlen((char *)src);
 	if (dstsize != 0)
 	{
-		while (dstsize-- > 1)
+		while (dstsize-- > 1 && *src != '\0')
 			*dst++ = *src++;
 		*dst = '\0';
 	}

@@ -6,29 +6,33 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	int	a;
 	int	h;
 
-	i = 0;
-	if (needle[0] == '\0')
-		return ((char*) haystack);
-	while (i++ < len || haystack[i] != '\0')
+	i = -1;
+	if (!ft_strlen((char *)needle))
+		return ((char *)haystack);
+	while (++i < len && haystack[i] != '\0')
 	{
 		a = 0;
-		if(needle[a] == haystack[i])
-		{	
+		if (needle[a] == haystack[i])
+		{
 			h = i;
-			while(needle[a++] == haystack[h++])
-			{	
-				if(needle[a + 1] == '\0')
-					return ((char *) haystack + i);
+			while (needle[a] == haystack[i] && i < len)
+			{
+				a++;
+				i++;
+				if (needle[a] == '\0')
+					return ((char *)(haystack + h));
 			}
+			i = h;
 		}
 	}
-	return (0);
+	return (NULL);
 }
 
 /*int	main()
 {
-	char str1[] = "bla bra ba";
-	char str2[] = "bra";
-	printf("%s\n", ft_strnstr(str1, str2, 9));
-	printf("%s\n", strnstr(str1, str2, 9));
+	char str1[] = "MZIRIBMZIRIBMZE123";
+	char str2[] = "MZIRIBMZE";
+	int a = ft_strlen(str2);
+	printf("%s\n", ft_strnstr(str1, str2, a));
+	printf("%s\n", strnstr(str1, str2, a));
 }*/
