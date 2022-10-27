@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/27 16:12:41 by lda-cunh          #+#    #+#             */
+/*   Updated: 2022/10/27 17:50:22 by lda-cunh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	char_set(char c, const char *set)
@@ -13,12 +25,13 @@ static int	char_set(char c, const char *set)
 	}
 	return (0);
 }
+
 char	*ft_strtrim(const char *s1, const char *set)
 {
 	char	*s2;
-	int	i;
-	int	start;
-	int	end;
+	int		i;
+	int		start;
+	int		end;
 
 	if (!s1 || !set)
 		return (NULL);
@@ -28,7 +41,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 	while (s1[start] != '\0' && char_set(s1[start], set))
 		start++;
 	while (end > start && char_set(s1[end - 1], set))
-	 	end--;
+		end--;
 	s2 = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!s2)
 		return (NULL);

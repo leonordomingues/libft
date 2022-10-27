@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/27 16:11:56 by lda-cunh          #+#    #+#             */
+/*   Updated: 2022/10/27 17:49:17 by lda-cunh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static int	strcount(char *s, char c)
@@ -19,7 +31,7 @@ static int	strcount(char *s, char c)
 static char	*stralloc(char *s, char c, int *flag)
 {
 	char	*str;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -29,7 +41,7 @@ static char	*stralloc(char *s, char c, int *flag)
 			while (s[i] != c)
 				i++;
 			str = (char *)malloc(sizeof(char *) * i + 1);
-			break;
+			break ;
 		}
 		i++;
 		flag += i;
@@ -55,9 +67,9 @@ void	freestr(char *str)
 char	**ft_split(const char *s, char c)
 {
 	char	**array;
-	int	len;
-	int	a;
-	int	i;
+	int		len;
+	int		a;
+	int		i;
 
 	len = strcount((char *)s, c);
 	a = 0;
