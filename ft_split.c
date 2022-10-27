@@ -75,4 +75,12 @@ char	**ft_split(const char *s, char c)
 	}
 	array[a] = NULL;
 	return (array);
-} 
+}
+
+/*int	main()
+{
+	char	s[] = "odeio o split";
+	char c = ' ';
+	while (
+		printf("%s\n", ft_split(s, c));
+}*/

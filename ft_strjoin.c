@@ -6,7 +6,9 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	int	i;
 	
 	i = 0;
-	s3 = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + ft_strlen((char *)s2)));
+	if (!s1 || !s2)
+		return (NULL);
+	s3 = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + ft_strlen((char *)s2)) + 1);
 	if (!s3)
 		return (NULL);
 	while (*s1 != '\0')

@@ -20,6 +20,8 @@ char	*ft_strtrim(const char *s1, const char *set)
 	int	start;
 	int	end;
 
+	if (!s1 || !set)
+		return (NULL);
 	i = 0;
 	start = 0;
 	end = ft_strlen((char *)s1);
@@ -27,7 +29,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 		start++;
 	while (end > start && char_set(s1[end - 1], set))
 	 	end--;
-	s2 = (char *)malloc(sizeof(char *) * (end - start + 1));
+	s2 = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!s2)
 		return (NULL);
 	while (start < end)

@@ -6,10 +6,18 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	int	i;
 
 	i = 0;
-	substr = (char *)malloc(sizeof(char) * ft_strlen((char *)s + start));
+	if (!s)
+		return (0);
+	if (ft_strlen((char *)s) < start)
+		return (ft_strdup(""));
+
+	if (ft_strlen((char *)s + start) < len)
+		substr = (char *)malloc(sizeof(char) * ft_strlen((char *)s + start) + 1);
+	else
+		substr = (char *)malloc(sizeof(char) * len + 1);
 	if (!substr)
 		return (NULL);
-	while (start < len || s[start] != '\0')
+	while (len-- && s[start] != '\0')
 		substr[i++] = s[start++];
 	substr[i] = '\0';
 	return (substr);

@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static int	intlen(int num)
+static int	intlen(long num)
 {
 	int	i;
 
@@ -22,26 +22,27 @@ static int	intlen(int num)
 
 char	*ft_itoa(int n)
 {
-	int	i;
+	long	i;
 	int	count;
 	char	*str;
 
-	count = intlen(n);
+	i = n;
+	count = intlen(i);
 	str = (char *)malloc(sizeof(char) * count + 1);
 	if (!str)
 		return (NULL);
-	if (n < 0)
+	if (i < 0)
 	{
 		str[0] = '-';
-		n *= -1;
+		i *= -1;
 	}
-	else if(n == 0)
+	else if(i == 0)
 		str[0] = '0';
 	str[count] = '\0';
-	while (n > 0)
+	while (i > 0)
 	{
-		str[--count] = n % 10 + '0';
-		n /= 10;
+		str[--count] = i % 10 + '0';
+		i /= 10;
 	}
 	return (str);
 }
