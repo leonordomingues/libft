@@ -21,38 +21,55 @@ static int	strcount(char *s, char c)
 	a = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] == c)
-			i++;
 		if (s[i] != c)
 		{
 			a++;
-			while (s[i] != c)
+			while (s[i] != c && s[i] != '\0')
 				i++;
+			if(s[i] == '\0')
+				return (a);
 		}
+		i++;
 	}
 	return (a);
 }
 
+static void	ft_strncpy(char *s, char *str, char c, int flag)
+{
+	int	i;
+
+	i = 0;
+	while (s[flag] != '\0' && s[flag] == c)
+		flag++;
+	while (s[flag + i] != c && s[flag + i] != '\0')
+	{
+		str[i] = s[flag + i];
+		i++;
+	}
+	str[i] = '\0';
+}
+	
 static char	*stralloc(char *s, char c, int *flag)
 {
 	char	*str;
 	int		i;
 
-	i = 0;
-	while (s[i] != '\0')
+	str = NULL;
+	while (s[*flag] != '\0')
 	{
-		if (s[i] != c)
+		if (s[*flag] != c)
 		{
-			while (s[i] != c)
-				i++;
-			str = (char *)malloc(sizeof(char) * i + 1);
+			i = *flag;
+			while (s[*flag] != c && s[*flag] != '\0')
+				(*flag)++;
+			str = (char *)malloc(sizeof(char) * (*flag) + 1);
+			if (!str)
+				return (NULL);
 			break ;
 		}
-		i++;
-		flag += i;
+		(*flag)++;
 	}
-	if (!str)
-		return (NULL);
+	ft_strncpy(s, str, c, i);
 	return (str);
 }
 
@@ -81,24 +98,24 @@ char	**ft_split(const char *s, char c)
 	len = strcount((char *)s, c);
 	a = 0;
 	i = 0;
-	array = (char **)malloc(sizeof(char) * len + 1);
+	array = (char **)malloc(sizeof(char *) * len + 1);
 	if (!array)
 		return (NULL);
+	array[len] = NULL;
 	while (a < len)
 	{
 		array[a] = stralloc((char *)s, c, &i);
-		ft_strlcpy(array[a], s, ft_strlen(array[a]) + 1);
 		if (array[a] == NULL)
 			freestr(array[a]);
 		a++;
 	}
-	array[a] = NULL;
+	//array[a] = NULL;
 	return (array);
 }
 
 int	main()
 {
-	char	s[] = "odeio o split";
+	char	s[] = "este split  ";
 	char c = ' ';
 	char	**split = ft_split(s, ' ');
 	int	index = 0;
