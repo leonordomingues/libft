@@ -6,7 +6,7 @@
 /*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:11:56 by lda-cunh          #+#    #+#             */
-/*   Updated: 2022/10/27 17:49:17 by lda-cunh         ###   ########.fr       */
+/*   Updated: 2022/10/31 13:06:41 by lda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	strcount(char *s, char c)
 			a++;
 			while (s[i] != c && s[i] != '\0')
 				i++;
-			if(s[i] == '\0')
+			if (s[i] == '\0')
 				return (a);
 		}
 		i++;
@@ -48,7 +48,7 @@ static void	ft_strncpy(char *s, char *str, char c, int flag)
 	}
 	str[i] = '\0';
 }
-	
+
 static char	*stralloc(char *s, char c, int *flag)
 {
 	char	*str;
@@ -109,11 +109,10 @@ char	**ft_split(const char *s, char c)
 			freestr(array[a]);
 		a++;
 	}
-	//array[a] = NULL;
 	return (array);
 }
 
-int	main()
+/*int	main()
 {
 	char	s[] = "este split  ";
 	char c = ' ';
@@ -124,4 +123,4 @@ int	main()
 		printf("%s\n", split[index]);
 		index++;
 	}
-}
+}*/
