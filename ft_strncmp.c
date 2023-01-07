@@ -6,7 +6,7 @@
 /*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:22 by lda-cunh          #+#    #+#             */
-/*   Updated: 2022/10/27 16:06:24 by lda-cunh         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:05:17 by lda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < n && s1[i] != '\0' && s2[i] != '\0')

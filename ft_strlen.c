@@ -6,13 +6,13 @@
 /*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:10:05 by lda-cunh          #+#    #+#             */
-/*   Updated: 2022/10/27 16:10:06 by lda-cunh         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:19:40 by lda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(const char *str)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:03:13 by lda-cunh          #+#    #+#             */
-/*   Updated: 2022/10/27 16:03:16 by lda-cunh         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:06:28 by lda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int	i;
+	size_t	i;
 	int	a;
 	int	h;
 

@@ -10,23 +10,26 @@ SRCS		= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strl
 
 OBJS		= $(SRCS:.c=.o)
 
+CC			= cc
+
+FLAGS		= -Wall -Wextra -Werror
+
 BONUS		= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
 			ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 BONUS_OBJS	= $(BONUS:.c=.o)
 
-CC		= cc
-
-RM		= rm -f
-
-FLAGS		= -Wall -Wextra -Werror
+RM			= rm -f
 
 NAME		= libft.a
 
-all:		$(NAME)
+.c.o:
+		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	$(OBJS)
 			ar rcs $(NAME) $(OBJS)
+
+all:		$(NAME)
 
 clean:
 			$(RM) $(OBJS) $(BONUS_OBJS)

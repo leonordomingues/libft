@@ -6,121 +6,111 @@
 /*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:11:56 by lda-cunh          #+#    #+#             */
-/*   Updated: 2022/10/31 13:06:41 by lda-cunh         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:50:48 by lda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	strcount(char *s, char c)
+static void	ft_freeup(char *strs)
 {
 	int	i;
-	int	a;
 
 	i = 0;
-	a = 0;
-	while (s[i] != '\0')
+	while (strs[i] != '\0')
 	{
-		if (s[i] != c)
+		free(strs);
+		i++;
+	}
+	free(strs);
+}
+
+static int	ft_wordcount(char *str, char c)
+{
+	int	i;
+	int	word;
+
+	i = 0;
+	word = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != c)
 		{
-			a++;
-			while (s[i] != c && s[i] != '\0')
+			word++;
+			while (str[i] != c && str[i] != '\0')
 				i++;
-			if (s[i] == '\0')
-				return (a);
+			if (str[i] == '\0')
+				return (word);
 		}
 		i++;
 	}
-	return (a);
+	return (word);
 }
 
-static void	ft_strncpy(char *s, char *str, char c, int flag)
+static void	ft_strcpy(char *word, char *str, char c, int j)
 {
 	int	i;
 
 	i = 0;
-	while (s[flag] != '\0' && s[flag] == c)
-		flag++;
-	while (s[flag + i] != c && s[flag + i] != '\0')
+	while (str[j] != '\0' && str[j] == c)
+		j++;
+	while (str[j + i] != c && str[j + i] != '\0')
 	{
-		str[i] = s[flag + i];
+		word[i] = str[j + i];
 		i++;
 	}
-	str[i] = '\0';
+	word[i] = '\0';
 }
 
-static char	*stralloc(char *s, char c, int *flag)
+static char	*ft_stralloc(char *str, char c, int *k)
 {
-	char	*str;
-	int		i;
+	char	*word;
+	int		j;
 
-	str = NULL;
-	while (s[*flag] != '\0')
+	j = *k;
+	word = NULL;
+	while (str[*k] != '\0')
 	{
-		if (s[*flag] != c)
+		if (str[*k] != c)
 		{
-			i = *flag;
-			while (s[*flag] != c && s[*flag] != '\0')
-				(*flag)++;
-			str = (char *)malloc(sizeof(char) * (*flag) + 1);
-			if (!str)
+			j = *k;
+			while (str[*k] != '\0' && str[*k] != c)
+				*k += 1;
+			word = (char *)malloc(sizeof(char) * (*k - j + 1));
+			if (word == NULL)
 				return (NULL);
 			break ;
 		}
-		(*flag)++;
+		*k += 1;
 	}
-	ft_strncpy(s, str, c, i);
-	return (str);
+	ft_strcpy(word, str, c, j);
+	return (word);
 }
 
-void	freestr(char *str)
+char	**ft_split(char const *str, char c)
 {
-	int	i;
+	char	**strs;
+	int		i;
+	int		j;
+	int		pos;
 
+	if (str == NULL)
+		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	pos = 0;
+	j = ft_wordcount((char *)str, c);
+	strs = (char **)malloc(sizeof(char *) * (j + 1));
+	if (strs == NULL)
+		return (NULL);
+	strs[j] = NULL;
+	while (i < j)
 	{
-		free(str);
+		strs[i] = ft_stralloc(((char *)str), c, &pos);
+		if (strs[i] == NULL)
+		{
+			ft_freeup(strs[i]);
+		}
 		i++;
 	}
-	free(str);
+	return (strs);
 }
-
-char	**ft_split(const char *s, char c)
-{
-	char	**array;
-	int		len;
-	int		a;
-	int		i;
-
-	if (!s || s == NULL)
-		return (NULL);
-	len = strcount((char *)s, c);
-	a = 0;
-	i = 0;
-	array = (char **)malloc(sizeof(char *) * len + 1);
-	if (!array)
-		return (NULL);
-	array[len] = NULL;
-	while (a < len)
-	{
-		array[a] = stralloc((char *)s, c, &i);
-		if (array[a] == NULL)
-			freestr(array[a]);
-		a++;
-	}
-	return (array);
-}
-
-/*int	main()
-{
-	char	s[] = "este split  ";
-	char c = ' ';
-	char	**split = ft_split(s, ' ');
-	int	index = 0;
-	while (split[index])
-	{
-		printf("%s\n", split[index]);
-		index++;
-	}
-}*/

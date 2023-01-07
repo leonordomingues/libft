@@ -6,7 +6,7 @@
 /*   By: lda-cunh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:08:07 by lda-cunh          #+#    #+#             */
-/*   Updated: 2022/10/27 17:45:19 by lda-cunh         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:21:15 by lda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	s3 = (char *)malloc(ft_strlen((char *)s1 + ft_strlen((char *)s2)) + 1);
+	s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!s3)
 		return (NULL);
 	while (*s1 != '\0')
@@ -33,8 +33,9 @@ char	*ft_strjoin(const char *s1, const char *s2)
 
 /*int	main()
 {
-	char s1[] = "string ";
-	char s2[] = "feita";
+	char s1[] = "lorem ipsum";
+	char s2[] = "dolor sit amet";
 	char *s3 = ft_strjoin(s1, s2);
 	printf("%s\n", s3);
+	free(s3);
 }*/
